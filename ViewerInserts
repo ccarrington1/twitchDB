@@ -5,6 +5,7 @@ Insert into viewer (UserName)
 Values ("Hello");
 Insert into viewer (UserName)
 Values
+(
 "Bob",
 "Heaven",
 "Seth",
@@ -24,5 +25,6 @@ Values
 "iijeriichoii",
 "OneForAll_Gaming",
 "Seraph",
-"Donald_Trump";
+"Donald_Trump"
+);
 Select * from viewer;
