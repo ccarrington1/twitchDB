@@ -1,6 +1,5 @@
 Set sql_safe_updates =0;
-Delete from viewer;
-ALTER TABLE viewer AUTO_INCREMENT=1;
+
 Insert into viewer (UserName)
 Values
 ("Hello"),
@@ -24,4 +23,9 @@ Values
 ("OneForAll_Gaming"),
 ("Seraph"),
 ("Donald_Trump");
+
+UPDATE viewer
+SET Doners = FLOOR(RAND() * 2) + 1,
+    Moderator =  FLOOR(RAND() * 2) + 1;
+
 Select * from viewer;
