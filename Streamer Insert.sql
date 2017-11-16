@@ -25,6 +25,9 @@ Values
 
 UPDATE streamer
 SET totalViews = FLOOR(RAND(10)*2000),
-    totalFollowers =  FLOOR(RAND(10)*600);
+    totalFollowers =  FLOOR(RAND(10)*600)
+    subscriptionButton = FLOOR(RAND() * 2) + 1,
+    Mature = FLOOR(RAND() * 2) + 1,
+    subIcon = FLOOR(RAND() * 2) + 1;
 
 Select * From streamer;
