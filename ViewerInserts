@@ -1,0 +1,28 @@
+Set sql_safe_updates =0;
+Delete from viewer;
+ALTER TABLE viewer AUTO_INCREMENT=1;
+Insert into viewer (UserName)
+Values ("Hello");
+Insert into viewer (viewerID, JoinDate, UserName, Doners, Moderator)
+Values
+(2, Now(), "Bob",1, 2),
+(3, Now(), "Heaven",1, 1),
+(4, Now(), "Seth",1, 2),
+(5, Now(), "John",1, 2),
+(6, Now(), "Charles",1, 1),
+(7, Now(), "Jordan",1, 2),
+(8, Curdate(), "Stacy",1, 1),
+(9, Curdate(), "Amanda",1, 2),
+(10, Curdate(), "Thor",1, 1),
+(11, Curdate(), "Wonderwoman",1, 1),
+(12, Curdate(), "Steve",1, 1),
+(13, Curdate(), "Gregg",1, 1),
+(14, Curdate(), "Amaz",1, 1),
+(15, Curdate(), "Kripparian",1, 2),
+(16, Curdate(), "Riggins",1, 1),
+(17, Curdate(), "TimtheTatman",1, 2),
+(18, Curdate(), "iijeriichoii",1, 2),
+(19, Curdate(), "OneForAll_Gaming",1, 1),
+(20, Curdate(), "Seraph",1, 1),
+(21, Curdate(), "Donald_Trump",1, 2);
+Select * from viewer;
