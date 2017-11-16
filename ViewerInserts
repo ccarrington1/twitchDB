@@ -5,26 +5,25 @@ Insert into viewer (UserName)
 Values ("Hello");
 Insert into viewer (UserName)
 Values
-(
-"Bob",
-"Heaven",
-"Seth",
-"John",
-"Charles",
-"Jordan",
-"Stacy",
-"Amanda",
-"Thor",
-"Wonderwoman",
-"Steve",
-"Gregg",
-"Amaz",
-"Kripparian",
-"Riggins",
-"TimtheTatman",
-"iijeriichoii",
-"OneForAll_Gaming",
-"Seraph",
-"Donald_Trump"
-);
+
+("Bob"),
+("Heaven"),
+("Seth"),
+("John"),
+("Charles"),
+("Jordan"),
+("Stacy"),
+("Amanda"),
+("Thor"),
+("Wonderwoman"),
+("Steve"),
+("Gregg"),
+("Amaz"),
+("Kripparian"),
+("Riggins"),
+("TimtheTatman"),
+("iijeriichoii"),
+("OneForAll_Gaming"),
+("Seraph"),
+("Donald_Trump");
 Select * from viewer;
