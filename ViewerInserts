@@ -2,10 +2,8 @@ Set sql_safe_updates =0;
 Delete from viewer;
 ALTER TABLE viewer AUTO_INCREMENT=1;
 Insert into viewer (UserName)
-Values ("Hello");
-Insert into viewer (UserName)
 Values
-
+("Hello"),
 ("Bob"),
 ("Heaven"),
 ("Seth"),
