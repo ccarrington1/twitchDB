@@ -1,4 +1,5 @@
 /*queries 1-8 */
+/* #1 */ 
 
 SELECT 
     gameName
@@ -74,6 +75,17 @@ FROM
     streamer
 ORDER BY channelname ASC;
 
-
-
 /* #8 */
+
+SELECT 
+    gamename, pcspecs
+FROM
+    game g
+        JOIN
+    streamer s
+WHERE
+    pcspecs > (SELECT 
+            AVG(pcspecs)
+        FROM
+            streamer)
+ORDER BY pcspecs DESC;
