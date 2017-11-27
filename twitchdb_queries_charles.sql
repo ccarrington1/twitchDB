@@ -1,51 +1,78 @@
 /*queries 1-8 */
 
-/* #1 */
-select gameName from game
-order by gameName desc;
+SELECT 
+    gameName
+FROM
+    game
+ORDER BY gameName DESC;
 
 /* #2 */
 
-select streamerID from moderator m
-inner join viewer v where m.streamerID = v.viewerID
-order by streamerID asc;
+SELECT 
+    streamerID
+FROM
+    moderator m
+        INNER JOIN
+    viewer v
+WHERE
+    m.streamerID = v.viewerID
+ORDER BY streamerID ASC;
 
 /* #3 */
 
-select * from streamer s
-left join viewer v on viewerID
-order by viewerID asc;
+SELECT 
+    *
+FROM
+    streamer s
+        LEFT JOIN
+    viewer v ON viewerID
+ORDER BY viewerID ASC;
 
 /* #4 */
 
-select channelname, username, gamename
-from streamer s join viewer v join game g where s.channelname = v.username
-order by v.username asc;
+SELECT 
+    channelname, username, gamename
+FROM
+    streamer s
+        JOIN
+    viewer v
+        JOIN
+    game g
+WHERE
+    s.channelname = v.username
+ORDER BY v.username ASC;
 
 /* # 5 */
 
-select channelname, count(totalSubscriptions) as 'Total Subs'
-from streamer
-group by channelname asc
-having count(totalsubscriptions) > 1;
+SELECT 
+    channelname, COUNT(totalSubscriptions) AS 'Total Subs'
+FROM
+    streamer
+GROUP BY channelname ASC
+HAVING COUNT(totalsubscriptions) > 1;
 
 /* #6 */
 
-select 
-username,
-round(avg(donations)) as 'Average Donation',
-sum(donations) as 'Total Donations', 
-date_format(cast(joindate as date), '%M/%d/%y') as 'MM/dd/yy',
-concat(totalviews, ' ', totalfollowers) as 'views/followers'
-
-from streamer s
-join viewer v
-
-order by username asc;
+SELECT 
+    username,
+    ROUND(AVG(donations)) AS 'Average Donation',
+    SUM(donations) AS 'Total Donations',
+    DATE_FORMAT(CAST(joindate AS DATE), '%M/%d/%y') AS 'MM/dd/yy',
+    CONCAT(totalviews, ' ', totalfollowers) AS 'views/followers'
+FROM
+    streamer s
+        JOIN
+    viewer v
+ORDER BY username ASC;
 
 /* #7 */
 
-
+SELECT 
+    channelname,
+    (totalviews / totalfollowers) AS Avg_Follows_Per_Views
+FROM
+    streamer
+ORDER BY channelname ASC;
 
 
 
