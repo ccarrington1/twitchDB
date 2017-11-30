@@ -26,7 +26,7 @@ Values
 
 UPDATE viewer
 SET Doners = FLOOR(RAND() * 2) + 1,
-    Moderator =  FLOOR(RAND() * 2) + 1,
+    Moderator =  FLOOR(RAND() * 2) + 1;
     JoinDate = DATE_ADD('2011-06-05', INTERVAL  2356*rand() DAY);
 
 Select * from viewer;
