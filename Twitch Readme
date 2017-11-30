@@ -26,4 +26,5 @@ Follow these steps to get your Twitch database up and running:
 
 To elaborate on some of our unique procedures, data generation, and triggers, here are some examples we used:
 
-- We have a procedure that will show how many years the user 
+- We have a procedure that will show how many years the user has been a part of Twitch.
+- We have a procedure that will generate up to 100 entries of data for each table. 
