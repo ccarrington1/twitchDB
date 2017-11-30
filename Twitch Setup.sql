@@ -232,7 +232,29 @@ SET Doners = FLOOR(RAND() * 2) + 1,
     JoinDate = DATE_ADD('2011-06-05', INTERVAL  2356*rand() DAY);
 UPDATE streamer SET viewerID = streamerID;
 
-
+INSERT INTO game (Genre, gameName) 
+VALUES 
+("FPS","Rainbow Six Siege"),
+("Sandbox","Minecraft"),
+("Simulation","Star Citizen"),
+("FPS","Call of Duty"),
+("MMORPG","World of Warcraft"),
+("Sports","Madden NFL"),
+("Sandbox","Ark Survival Evolved"),
+("Racing","Forza"),
+("Racing","Mario Kart"),
+("Action Adventure","Lego Batman"),
+("Action Adventure","Skylanders"),
+("Action Adventure","Lego Star Wars"),
+("RPG","Kingdom Hearts"),
+("RPG","Skyrim"),
+("FPS","Player Unknown Battlegrounds"),
+("FPS","Destiny 2"),
+("Simulation","Farm Simulator"),
+("MMORPG","Aion Online"),
+("Sports","Fifa"),
+("Action Adventure","Disney Infinity"),
+("RPG","Dragon Age");
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
