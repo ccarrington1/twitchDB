@@ -10,21 +10,32 @@ ORDER BY gameName DESC;
 /* #2 */
 
 SELECT 
-    streamerID
+    DISTINCT streamerID AS 'Self-Moderators'
 FROM
     moderator m
-        INNER JOIN
-    viewer v
 WHERE
-    m.streamerID = v.viewerID
+    streamerID = viewerID
 ORDER BY streamerID ASC;
 
 /* #3 */
 
 SELECT 
-    *
+    viewerID,
+    UserName,
+    ChannelName,
+    DATE_FORMAT(CAST(joindate AS DATE), '%M/%d/%Y') AS 'Date Joined',
+    FORMAT(totalviews, 0) AS 'Total Views',
+    FORMAT(totalfollowers, 0) AS 'Total Followers',
+    subscriptionButton AS 'Can Followers Subscribe?',
+    FORMAT(totalSubscriptions, 0) AS 'Total Subscriptions',
+    Mature,
+    CONCAT('$', FORMAT(donations, 2)) AS 'Total Donations',
+    Doners,
+    Moderator
 FROM
-    streamer JOIN viewer USING (viewerID)
+    streamer
+        JOIN
+    viewer USING (viewerID)
 ORDER BY viewerID ASC;
 
 /* #4 */

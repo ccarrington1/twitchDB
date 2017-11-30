@@ -135,27 +135,7 @@ CREATE TABLE IF NOT EXISTS `Twitch`.`Moderator` (
 
   INDEX `streamerID_idx` (`streamerID` ASC),
 
-  INDEX `viewerID_idx` (`viewerID` ASC),
-
-  CONSTRAINT `streamerID`
-
-    FOREIGN KEY (`streamerID`)
-
-    REFERENCES `Twitch`.`Streamer` (`streamerID`)
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION,
-
-  CONSTRAINT `viewerID`
-
-    FOREIGN KEY (`viewerID`)
-
-    REFERENCES `Twitch`.`Viewer` (`viewerID`)
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION)
+  INDEX `viewerID_idx` (`viewerID` ASC))
 
 ENGINE = InnoDB;
 
