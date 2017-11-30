@@ -186,7 +186,6 @@ ENGINE = InnoDB;
 -- ----------------------------------------------------
 
 ALTER TABLE streamer ADD viewerID INT(45) AFTER streamerID;
-UPDATE streamer SET viewerID = streamerID;
 Set sql_safe_updates = 0;
 Insert into streamer (ChannelName)
 Values
@@ -213,11 +212,15 @@ Values
 
 UPDATE streamer
 SET totalViews = FLOOR(RAND(10)*2000),
-    totalFollowers =  FLOOR(RAND(10)*600),
+    totalFollowers =  FLOOR(RAND(10)*totalViews),
     subscriptionButton = FLOOR(RAND() * 2) + 1,
     Mature = FLOOR(RAND() * 2) + 1,
     subIcon = FLOOR(RAND() * 2) + 1,
-    Donations = FLOOR(RAND(10)*1500);
+    Donations = FLOOR(RAND(10)*1500),
+    totalSubscriptions = CASE
+		WHEN subscriptionButton = "Yes" THEN FLOOR(RAND(10)*totalFollowers)
+        ELSE totalSubscriptions
+        END;
 
 Insert into viewer (UserName)
 Values
@@ -247,6 +250,7 @@ UPDATE viewer
 SET Doners = FLOOR(RAND() * 2) + 1,
     Moderator =  FLOOR(RAND() * 2) + 1,
     JoinDate = DATE_ADD('2011-06-05', INTERVAL  2356*rand() DAY);
+UPDATE streamer SET viewerID = streamerID;
 
 
 

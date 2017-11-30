@@ -24,9 +24,7 @@ ORDER BY streamerID ASC;
 SELECT 
     *
 FROM
-    streamer s
-        LEFT JOIN
-    viewer v ON viewerID
+    streamer JOIN viewer USING (viewerID)
 ORDER BY viewerID ASC;
 
 /* #4 */
@@ -46,31 +44,29 @@ ORDER BY v.username ASC;
 /* # 5 */
 
 SELECT 
-    channelname, COUNT(totalSubscriptions) AS 'Total Subs'
+    channelname, totalSubscriptions AS 'Total Subs'
 FROM
     streamer
 GROUP BY channelname ASC
-HAVING COUNT(totalsubscriptions) > 1;
+HAVING totalsubscriptions > 1;
+
 
 /* #6 */
 
 SELECT 
     username AS 'Username',
-    CONCAT('$', Format(ROUND(AVG(donations)),2)) AS 'Average Donation',
-    CONCAT('$', Format(SUM(donations), 2)) AS 'Total Donations',
+    CONCAT('$', Format(donations, 2)) AS 'Total Donations',
     DATE_FORMAT(CAST(joindate AS DATE), '%M/%d/%Y') AS 'Date Joined',
     CONCAT(Format(totalviews, 0), ' / ', Format(totalfollowers, 0)) AS 'views / followers'
 FROM
-    streamer s
-        JOIN
-    viewer v 
+    streamer JOIN viewer USING (viewerID)
 ORDER BY username ASC;
 
 /* #7 */
 
 SELECT 
     channelname,
-    (totalviews / totalfollowers) AS Avg_Follows_Per_Views
+    ROUND(totalviews / totalfollowers, 2) AS Avg_Follows_Per_Views
 FROM
     streamer
 ORDER BY channelname ASC;
