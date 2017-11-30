@@ -18,3 +18,10 @@ FROM streamer
 JOIN gamestreaming ON streamer.streamerID = gamestreaming.streamerID
 JOIN game ON game.gameID = gamestreaming.gameID
 GROUP BY streamerID;
+
+SELECT game.gameID,
+	   GROUP_CONCAT(DISTINCT streamer.streamerID) AS 'Users Streaming'
+FROM game
+JOIN gamestreaming ON game.gameID = gamestreaming.gameID
+JOIN streamer ON streamer.streamerID = gamestreaming.streamerID
+GROUP BY gameID;
