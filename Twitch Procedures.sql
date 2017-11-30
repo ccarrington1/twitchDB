@@ -46,17 +46,17 @@ END WHILE;
 END$$
 DELIMITER ;
 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS RunBirthday$$
+CREATE PROCEDURE RunBirthday()
+BEGIN
+DECLARE i int;
+SET i = 1;
+WHILE i < 22 DO
+Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = i), i);
+SET i = i + 1;
+END WHILE;
+END$$
+DELIMITER ;
 
-
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 1), 1);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 2), 2);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 3), 3);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 4), 4);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 5), 5);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 6), 6);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 7), 7);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 8), 8);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 9), 9);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 10), 10);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 11), 11);
-Call BirthdayReward((SELECT JoinDate FROM viewer WHERE viewerID = 12), 12);
+Call RunBirthday();
