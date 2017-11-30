@@ -60,3 +60,5 @@ END$$
 DELIMITER ;
 
 Call RunBirthday();
+Call FillModeratorTable();
+Call FillGameStreamingTable();
