@@ -55,15 +55,15 @@ HAVING COUNT(totalsubscriptions) > 1;
 /* #6 */
 
 SELECT 
-    username,
-    ROUND(AVG(donations)) AS 'Average Donation',
-    SUM(donations) AS 'Total Donations',
-    DATE_FORMAT(CAST(joindate AS DATE), '%M/%d/%y') AS 'MM/dd/yy',
-    CONCAT(totalviews, ' ', totalfollowers) AS 'views/followers'
+    username AS 'Username',
+    CONCAT('$', Format(ROUND(AVG(donations)),2)) AS 'Average Donation',
+    CONCAT('$', Format(SUM(donations), 2)) AS 'Total Donations',
+    DATE_FORMAT(CAST(joindate AS DATE), '%M/%d/%Y') AS 'Date Joined',
+    CONCAT(Format(totalviews, 0), ' / ', Format(totalfollowers, 0)) AS 'views / followers'
 FROM
     streamer s
         JOIN
-    viewer v
+    viewer v 
 ORDER BY username ASC;
 
 /* #7 */
