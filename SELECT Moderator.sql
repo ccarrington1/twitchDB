@@ -11,3 +11,10 @@ FROM viewer
 JOIN moderator ON viewer.viewerID = moderator.viewerID
 JOIN streamer ON streamer.streamerID = moderator.streamerID
 GROUP BY viewer.viewerID;
+
+SELECT streamer.streamerID,
+		GROUP_CONCAT(DISTINCT game.gameID) AS 'Games Streamed'
+FROM streamer
+JOIN gamestreaming ON streamer.streamerID = gamestreaming.streamerID
+JOIN game ON game.gameID = gamestreaming.gameID
+GROUP BY streamerID;
