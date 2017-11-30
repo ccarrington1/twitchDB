@@ -86,6 +86,8 @@ CREATE TABLE IF NOT EXISTS `Twitch`.`Viewer` (
   `UserName` VARCHAR(45) NOT NULL,
 
   `JoinDate` DATETIME DEFAULT NOW(),
+  
+  `Anniversary` INT DEFAULT 0,
 
   `Doners` ENUM('Yes','No') DEFAULT 'No',
 
