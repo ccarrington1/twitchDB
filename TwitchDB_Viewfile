@@ -1,0 +1,19 @@
+CREATE VIEW `TwitchDB_viewfile` AS
+    SELECT 
+        viewerID,
+        UserName,
+        ChannelName,
+        DATE_FORMAT(CAST(joindate AS DATE), '%M/%d/%Y') AS 'Date Joined',
+        FORMAT(totalviews, 0) AS 'Total Views',
+        FORMAT(totalfollowers, 0) AS 'Total Followers',
+        subscriptionButton AS 'Can Followers Subscribe?',
+        FORMAT(totalSubscriptions, 0) AS 'Total Subscriptions',
+        Mature,
+        CONCAT('$', FORMAT(donations, 2)) AS 'Total Donations',
+        Doners,
+        Moderator
+    FROM
+        streamer
+            JOIN
+        viewer USING (viewerID)
+    ORDER BY viewerID ASC;
