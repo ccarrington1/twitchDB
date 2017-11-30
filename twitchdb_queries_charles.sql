@@ -2,7 +2,7 @@
 /* #1 */ 
 
 SELECT 
-    gameName
+    gameName AS 'Games Streamed'
 FROM
     game
 ORDER BY gameName DESC;
@@ -13,8 +13,9 @@ SELECT
     DISTINCT streamerID AS 'Self-Moderators'
 FROM
     moderator m
+    Inner JOin viewer v
 WHERE
-    streamerID = viewerID
+    m.streamerID =  v.viewerID
 ORDER BY streamerID ASC;
 
 /* #3 */
@@ -33,33 +34,30 @@ SELECT
     Doners,
     Moderator
 FROM
-    streamer
-        JOIN
-    viewer USING (viewerID)
+    streamer s
+        LEft JOIN
+    viewer v USING (viewerID)
 ORDER BY viewerID ASC;
 
 /* #4 */
 
-SELECT 
-    channelname, username, gamename
-FROM
-    streamer s
-        JOIN
-    viewer v
-        JOIN
-    game g
-WHERE
-    s.channelname = v.username
-ORDER BY v.username ASC;
+SELECT streamer.streamerID, channelName,
+		GROUP_CONCAT(DISTINCT game.gameID) AS 'Games Streamed',
+        GROUP_CONCAT(DISTINCT game.gameName) AS 'Games'
+FROM streamer
+JOIN gamestreaming ON streamer.streamerID = gamestreaming.streamerID
+JOIN game ON game.gameID = gamestreaming.gameID
+WHERE streamer.streamerID < 6
+Group BY streamerID;
 
 /* # 5 */
 
 SELECT 
-    channelname, totalSubscriptions AS 'Total Subs'
+    channelname, SUM(totalSubscriptions) AS 'Total Subs' 
 FROM
     streamer
-GROUP BY channelname ASC
-HAVING totalsubscriptions > 1;
+GROUP BY channelname ASC WITH ROLLUP
+HAVING SUM(totalSubscriptions) > 1;
 
 
 /* #6 */
@@ -84,15 +82,11 @@ ORDER BY channelname ASC;
 
 /* #8 */
 
-SELECT 
-    gamename, pcspecs
-FROM
-    game g
-        JOIN
-    streamer s
-WHERE
-    pcspecs > (SELECT 
-            AVG(pcspecs)
-        FROM
-            streamer)
-ORDER BY pcspecs DESC;
+SELECT game.gameName,
+       ROUND(AVG(streamer.Processor)) AS 'AVG Processors Used'
+FROM game
+JOIN gamestreaming ON game.gameID = gamestreaming.gameID
+JOIN streamer ON streamer.streamerID = gamestreaming.streamerID
+
+where (select streamer.processor >= 4)
+GROUP BY gameName;

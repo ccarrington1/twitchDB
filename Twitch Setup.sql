@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `Twitch`.`Streamer` (
 
   `streamerID` INT NOT NULL AUTO_INCREMENT,
 
-  `ChannelName` VARCHAR(13) NOT NULL,
+  `ChannelName` VARCHAR(45) NOT NULL,
 
   `totalViews` INT DEFAULT 0,
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `Twitch`.`Streamer` (
 
   `totalSubscriptions` INT DEFAULT 0,
 
-  `pcSpecs` LONGTEXT NULL,
+  `Processor` INT NULL,
 
   `Mature` ENUM('Yes','No') DEFAULT 'No',
 
@@ -197,6 +197,7 @@ SET totalViews = FLOOR(RAND(10)*2000),
     Mature = FLOOR(RAND() * 2) + 1,
     subIcon = FLOOR(RAND() * 2) + 1,
     Donations = FLOOR(RAND(10)*1500),
+    Processor = FLOOR(RAND() * 4) + 4,
     totalSubscriptions = CASE
 		WHEN subscriptionButton = "Yes" THEN FLOOR(RAND(10)*totalFollowers)
         ELSE totalSubscriptions
@@ -255,6 +256,14 @@ VALUES
 ("Sports","Fifa"),
 ("Action Adventure","Disney Infinity"),
 ("RPG","Dragon Age");
+
+UPDATE streamer 
+INNER JOIN viewer ON viewer.viewerID
+SET 
+    channelName = viewer.UserName
+    
+WHERE
+    viewer.viewerID = streamer.streamerID;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
