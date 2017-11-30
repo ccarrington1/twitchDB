@@ -29,3 +29,6 @@ SET i = i + 1;
 END WHILE;
 END$$
 DELIMITER ;
+
+Call FillModeratorTable();
+Call FillGameStreamingTable();
