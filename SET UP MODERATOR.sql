@@ -14,3 +14,18 @@ END WHILE;
 END$$
 DELIMITER ;
 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS FillGameStreamingTable$$
+CREATE PROCEDURE FillGameStreamingTable()
+BEGIN
+DECLARE i int;
+SET i = 0;
+
+WHILE i < 100 DO
+Set sql_safe_updates = 0;
+INSERT INTO gamestreaming (streamerID, gameID) VALUES (FLOOR(RAND()*20) +1, FLOOR(RAND()*20) +1);
+
+SET i = i + 1;
+END WHILE;
+END$$
+DELIMITER ;
